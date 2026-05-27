@@ -15,7 +15,7 @@ public class StudentValidator {
     private final StudentRepository studentRepository;
 
     // Validate if student exist
-    public void validateStudentExists(Long userId) {
+    public Student validateStudentExists(Long userId) {
 
         Student student = studentRepository.findById(userId)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found: " + userId));
@@ -27,19 +27,5 @@ public class StudentValidator {
         boolean exists = studentRepository.existsByStudentNumber(studentNumber);
 
         if (exists) throw new DuplicateRequestException("Student number already exists: " + studentNumber);
-    }
-
-    // Validate if the email is unique
-    public void validateEmailUnique(String email) {
-
-        if (studentRepository.existsByEmail(email)) throw new EmailAlreadyExistsException("Email already exists: " + email);
-    }
-
-    public void validateUpdateEmailUnique(Student student, String newEmail) {
-
-        if (!student.getEmail().equals(newEmail) && studentRepository.existsByEmail(newEmail)) {
-
-            throw new EmailAlreadyExistsException("Email Already exists: " + newEmail);
-        }
     }
 }

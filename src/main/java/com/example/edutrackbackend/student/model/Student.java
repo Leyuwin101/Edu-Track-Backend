@@ -70,9 +70,6 @@ public class Student {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
-
     @Column(name = "guardian_name")
     private String guardianName;
 

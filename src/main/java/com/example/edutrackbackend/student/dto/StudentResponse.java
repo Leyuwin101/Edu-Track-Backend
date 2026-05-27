@@ -41,8 +41,6 @@ public class StudentResponse {
 
     private String address;
 
-    private String email;
-
     private String guardianName;
 
     private String guardianContact;

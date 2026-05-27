@@ -12,7 +12,7 @@ public class StudentSpecification {
      * - first name,
      * - last name,
      * - student number,
-     * - email
+     *
      */
     public static Specification<Student> hasKeyword(String keyword) {
 
@@ -25,8 +25,7 @@ public class StudentSpecification {
             return cb.or(
                     cb.like(cb.lower(root.get("firstName")), search),
                     cb.like(cb.lower(root.get("lastName")), search),
-                    cb.like(cb.lower(root.get("studentNumber")), search),
-                    cb.like(cb.lower(root.get("email")), search)
+                    cb.like(cb.lower(root.get("studentNumber")), search)
 
             );
         };

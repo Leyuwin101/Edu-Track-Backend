@@ -17,5 +17,4 @@ public interface StudentRepository extends JpaRepository<Student, Long>, JpaSpec
 
     boolean existsByStudentNumber(String number);
 
-    boolean existsByEmail(String email);
 }

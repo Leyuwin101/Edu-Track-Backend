@@ -52,10 +52,6 @@ public class StudentRequest {
     @NotBlank(message = "Address is required")
     private String address;
 
-    @Email(message = "Invalid email format")
-    @NotBlank(message = "Email is required")
-    private String email;
-
     @NotBlank(message = "Guardian Name is required")
     private String guardianName;
 

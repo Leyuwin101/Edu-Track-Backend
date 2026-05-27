@@ -1,44 +1,33 @@
 package com.example.edutrackbackend.user.mapper;
 
+import com.example.edutrackbackend.user.dto.UserDTO;
 import com.example.edutrackbackend.user.dto.UserRequest;
 import com.example.edutrackbackend.user.dto.UserResponse;
 import com.example.edutrackbackend.user.model.User;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Named;
 
-@Component
-public class UserMapper {
-
-    /**
-     * Takes a DTO (from API request) and builds an Entity for persistence.
-     * @param request UserRequest
-     * @return user
-     */
-    public User toEntity(UserRequest request) {
-
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
-        user.setRole(request.getRole());
-
-        return user;
-    }
-
+@Mapper(componentModel = "spring")
+public interface UserMapper {
 
     /**
-     * Takes an Entity (from DB) and builds a DTO for API response.
-     * @param user
-     * @return User response
+     * Converts UserRequest DTO into User entity.
+     * Used during user registration or creation.
      */
-    public UserResponse toDto(User user) {
+    User toEntity(UserRequest request);
 
-        return new UserResponse(
-                user.getUserId(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getRole(),
-                user.getCreatedAt()
-        );
-    }
+    /**
+     * Converts User entity into full UserResponse DTO.
+     * Used for API responses requiring complete user details.
+     */
+    UserResponse toDto(User user);
+
+    /**
+     * Converts User entity into lightweight UserDTO.
+     * Used when embedding user data inside other DTOs (e.g., StudentResponse).
+     */
+    @Named("toUserDTO")
+    UserDTO toUserDto(User user);
+
 
 }

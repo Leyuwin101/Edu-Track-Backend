@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService{
 
         User saved = userRepository.save(user);
 
-        log.info("[USER][CREATE] success username");
+        log.info("[USER][CREATE] success username={}", saved.getUsername());
 
         return userMapper.toDto(saved);
 
