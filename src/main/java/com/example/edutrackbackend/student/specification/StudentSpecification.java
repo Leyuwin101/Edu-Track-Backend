@@ -1,5 +1,6 @@
 package com.example.edutrackbackend.student.specification;
 
+import com.example.edutrackbackend.student.enums.Gender;
 import com.example.edutrackbackend.student.enums.StudentStatus;
 import com.example.edutrackbackend.student.enums.YearLevel;
 import com.example.edutrackbackend.student.model.Student;
@@ -62,6 +63,17 @@ public class StudentSpecification {
             if (section == null) return null;
 
             return cb.equal(cb.lower(root.get("section")), section.toLowerCase());
+        };
+    }
+
+    // Filter students by gender
+    public static Specification<Student> hasGender(Gender gender) {
+
+        return (root, query, cb) -> {
+
+            if (gender == null) return null;
+
+            return cb.equal(cb.lower(root.get("gender")), gender);
         };
     }
 }

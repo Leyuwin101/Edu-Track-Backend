@@ -19,9 +19,6 @@ public class StudentRequest {
     @NotNull(message = "User id is required")
     private Long userId;
 
-    @NotBlank(message = "Student number is required")
-    private String studentNumber;
-
     @Size(max = 100, message = "First name too long")
     @NotBlank(message = "First name is required")
     private String firstName;

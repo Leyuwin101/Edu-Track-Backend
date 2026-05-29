@@ -34,7 +34,7 @@ public class Student {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "student_number", nullable = false, unique = true)
+    @Column(name = "student_number", unique = true)
     private String studentNumber;
 
     @Column(name = "first_name", length = 100, nullable = false)

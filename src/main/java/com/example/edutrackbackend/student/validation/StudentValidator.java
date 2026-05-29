@@ -1,12 +1,13 @@
 package com.example.edutrackbackend.student.validation;
 
-import com.example.edutrackbackend.common.exception.EmailAlreadyExistsException;
+import com.example.edutrackbackend.common.exception.SectionNotFoundException;
 import com.example.edutrackbackend.student.exception.StudentNotFoundException;
 import com.example.edutrackbackend.student.model.Student;
 import com.example.edutrackbackend.student.repository.StudentRepository;
-import com.sun.jdi.request.DuplicateRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -15,17 +16,21 @@ public class StudentValidator {
     private final StudentRepository studentRepository;
 
     // Validate if student exist
-    public Student validateStudentExists(Long userId) {
+    public Student validateStudentExists(Long studentId) {
 
-        Student student = studentRepository.findById(userId)
-                .orElseThrow(() -> new StudentNotFoundException("Student not found: " + userId));
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new StudentNotFoundException("Student not found: " + studentId));
+
+        return student;
     }
 
-    // Validate if the student number is unique
-    public void validateStudentNumberUnique(String studentNumber) {
 
-        boolean exists = studentRepository.existsByStudentNumber(studentNumber);
 
-        if (exists) throw new DuplicateRequestException("Student number already exists: " + studentNumber);
+    // Validate if section exists
+    public void validateSectionExists(String section) {
+
+        boolean exists = studentRepository.existsBySection(section);
+
+        if (!exists) throw new SectionNotFoundException("Section not found: " + section);
     }
 }

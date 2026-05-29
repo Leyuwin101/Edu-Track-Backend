@@ -38,6 +38,7 @@ public class UserController {
             @ApiResponse(responseCode = "201", description = "User successfully created"),
             @ApiResponse(responseCode = "400", description = "Validation failed"),
             @ApiResponse(responseCode = "409", description = "Email Already Exists"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
     @PostMapping
@@ -65,6 +66,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Validation failed"),
             @ApiResponse(responseCode = "404", description = "User not found"),
             @ApiResponse(responseCode = "409", description = "Email already exists"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
     @PutMapping("/{id}")
@@ -88,6 +90,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "User deleted successfully"),
             @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
     @DeleteMapping("/{id}")
@@ -111,6 +114,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User fetched successfully"),
             @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
     @GetMapping("/{id}")
@@ -132,6 +136,7 @@ public class UserController {
     @Operation(summary = "Fetch all users", description = "Accessible by ADMIN only")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "All users fetched successfully"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
     @GetMapping
