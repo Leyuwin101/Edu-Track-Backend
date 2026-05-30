@@ -2,6 +2,7 @@ package com.example.edutrackbackend.student.dto;
 
 import com.example.edutrackbackend.common.enums.Gender;
 import com.example.edutrackbackend.student.enums.YearLevel;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(description = "Student request")
 public class StudentRequest {
 
     @NotNull(message = "User id is required")

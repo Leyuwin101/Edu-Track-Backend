@@ -9,10 +9,10 @@ import lombok.Setter;
 @Schema(description = "Login Response")
 public class AuthResponse {
 
-    @Schema(description = "JWT access token")
+    @Schema(description = "JWT access token", example = "eyJhbGciOiJIUzI1NiJ9...")
     private String accessToken;
 
-    @Schema(description = "JWT refresh token")
+    @Schema(description = "JWT refresh token", example = "d9f1f2a1-8b5c-4c7f-a2e3-123456789abc")
     private String refreshToken;
 
 }

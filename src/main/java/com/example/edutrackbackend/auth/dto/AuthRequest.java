@@ -11,9 +11,9 @@ import lombok.Setter;
 @Schema(description = "Login Request")
 public class AuthRequest {
 
-    @Schema(example = "admin@gmail.com")
+    @Schema(description = "User email address",  example = "admin@gmail.com")
     private String email;
 
-    @Schema(example = "admin123")
+    @Schema(description = "User password", example = "admin123")
     private String password;
 }

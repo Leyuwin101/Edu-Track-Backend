@@ -9,5 +9,6 @@ import lombok.Setter;
 @Schema(description = "Refresh request")
 public class RefreshRequest {
 
+    @Schema(description = "JWT refresh token", example = "d9f1f2a1-8b5c-4c7f-a2e3-123456789abc")
     private String refreshToken;
 }
