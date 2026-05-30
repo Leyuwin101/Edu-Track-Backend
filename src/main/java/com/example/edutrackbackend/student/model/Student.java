@@ -1,6 +1,6 @@
 package com.example.edutrackbackend.student.model;
 
-import com.example.edutrackbackend.student.enums.Gender;
+import com.example.edutrackbackend.common.enums.Gender;
 import com.example.edutrackbackend.student.enums.StudentStatus;
 import com.example.edutrackbackend.student.enums.YearLevel;
 import com.example.edutrackbackend.user.model.User;
@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
         indexes = {
                 @Index(name = "idx_students_student_number", columnList = "student_number"),
                 @Index(name = "idx_students_last_name", columnList = "last_name"),
-                @Index(name = "idx_students_email", columnList = "email"),
                 @Index(name = "idx_students_year_level", columnList = "year_level")
         }
 )

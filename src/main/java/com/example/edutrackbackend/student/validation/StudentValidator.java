@@ -18,19 +18,10 @@ public class StudentValidator {
     // Validate if student exist
     public Student validateStudentExists(Long studentId) {
 
-        Student student = studentRepository.findById(studentId)
+        return studentRepository.findById(studentId)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found: " + studentId));
 
-        return student;
     }
 
 
-
-    // Validate if section exists
-    public void validateSectionExists(String section) {
-
-        boolean exists = studentRepository.existsBySection(section);
-
-        if (!exists) throw new SectionNotFoundException("Section not found: " + section);
-    }
 }

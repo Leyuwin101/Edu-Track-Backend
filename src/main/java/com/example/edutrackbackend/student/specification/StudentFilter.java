@@ -1,6 +1,6 @@
 package com.example.edutrackbackend.student.specification;
 
-import com.example.edutrackbackend.student.enums.Gender;
+import com.example.edutrackbackend.common.enums.Gender;
 import com.example.edutrackbackend.student.enums.StudentStatus;
 import com.example.edutrackbackend.student.enums.YearLevel;
 import lombok.Getter;

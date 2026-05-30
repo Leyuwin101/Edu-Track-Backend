@@ -36,7 +36,6 @@ public class StudentServiceImpl implements StudentService{
      * Create student that links with user
      *
      * Process:
-     * - Use student validator to check if the student number is unique
      * - Use user validator to check if the user id exists
      * - Map the Request Dto to Student Entity(DB)
      * - Set the student number with generated student id (EDU-2026-0001)
@@ -202,7 +201,7 @@ public class StudentServiceImpl implements StudentService{
                 .data(responses)
                 .currentPage(students.getNumber())
                 .totalPage(students.getTotalPages())
-                .totalItems(students.getTotalPages())
+                .totalItems(students.getTotalElements())
                 .build();
     }
 

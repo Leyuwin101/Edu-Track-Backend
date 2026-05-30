@@ -44,7 +44,6 @@ public class StudentController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Student created successfully"),
             @ApiResponse(responseCode = "400", description = "Validation failed"),
-            @ApiResponse(responseCode = "409", description = "Email Already Exists"),
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
@@ -71,7 +70,6 @@ public class StudentController {
             @ApiResponse(responseCode = "200", description = "Student updated successfully"),
             @ApiResponse(responseCode = "400", description = "Validation failed"),
             @ApiResponse(responseCode = "404", description = "Student not found"),
-            @ApiResponse(responseCode = "409", description = "Email Already Exists"),
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
@@ -172,7 +170,7 @@ public class StudentController {
     })
     @GetMapping("/search")
     @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
-    public ResponseEntity<ApiRes<PaginatedRes<StudentResponse>>> searchStudent(@ModelAttribute StudentFilter filter, @PageableDefault(size = 10) Pageable pageable) {
+    public ResponseEntity<ApiRes<PaginatedRes<StudentResponse>>> searchStudent(@ModelAttribute StudentFilter filter,  Pageable pageable) {
 
         PaginatedRes<StudentResponse> response = studentService.searchStudents(filter, pageable);
 

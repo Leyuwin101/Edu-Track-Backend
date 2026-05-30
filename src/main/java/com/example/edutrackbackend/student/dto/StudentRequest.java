@@ -1,6 +1,6 @@
 package com.example.edutrackbackend.student.dto;
 
-import com.example.edutrackbackend.student.enums.Gender;
+import com.example.edutrackbackend.common.enums.Gender;
 import com.example.edutrackbackend.student.enums.YearLevel;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -25,6 +25,7 @@ public class StudentRequest {
 
     private String middleName;
 
+    @Size(max = 100, message = "Last name too long")
     @NotBlank(message = "Last name is required")
     private String lastName;
 

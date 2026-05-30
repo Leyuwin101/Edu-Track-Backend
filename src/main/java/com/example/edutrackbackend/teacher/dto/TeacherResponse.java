@@ -1,7 +1,6 @@
-package com.example.edutrackbackend.student.dto;
+package com.example.edutrackbackend.teacher.dto;
 
 import com.example.edutrackbackend.common.enums.Gender;
-import com.example.edutrackbackend.student.enums.YearLevel;
 import com.example.edutrackbackend.user.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,13 +14,13 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentResponse {
+public class TeacherResponse {
 
-    private Long studentId;
+    private Long teacherId;
 
-    private UserDTO userDTO;
+    private UserDTO user;
 
-    private String studentNumber;
+    private String employeeNumber;
 
     private String firstName;
 
@@ -31,21 +30,19 @@ public class StudentResponse {
 
     private Gender gender;
 
-    private LocalDate birthDate;
-
-    private YearLevel yearLevel;
-
-    private String section;
-
-    private String contactNumber;
+    private LocalDate birthdate;
 
     private String address;
 
-    private String guardianName;
+    private String department;
 
-    private String guardianContact;
+    private String specialization;
+
+    private String contactNumber;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+
 }
