@@ -1,6 +1,7 @@
 package com.example.edutrackbackend.teacher.specification;
 
 import com.example.edutrackbackend.common.enums.Gender;
+import com.example.edutrackbackend.department.model.Department;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ public class TeacherFilter {
 
     private String keyword;
 
-    private String department;
+    private Long departmentId;
 
     private Gender gender;
 

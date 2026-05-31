@@ -1,6 +1,7 @@
 package com.example.edutrackbackend.teacher.model;
 
 import com.example.edutrackbackend.common.enums.Gender;
+import com.example.edutrackbackend.department.model.Department;
 import com.example.edutrackbackend.user.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
         indexes = {
                 @Index(name = "idx_teachers_employee_number", columnList = "employee_number"),
                 @Index(name = "idx_teachers_last_name", columnList = "last_name"),
-                @Index(name = "idx_teachers_department", columnList = "department")
+                @Index(name = "idx_teachers_department_id", columnList = "department_id")
         }
 )
 public class Teacher {
@@ -54,8 +55,9 @@ public class Teacher {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "department", nullable = false)
-    private String department;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     @Column(name = "specialization", nullable = false)
     private String specialization;

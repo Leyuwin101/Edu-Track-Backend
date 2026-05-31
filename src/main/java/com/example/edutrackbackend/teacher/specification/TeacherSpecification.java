@@ -1,6 +1,7 @@
 package com.example.edutrackbackend.teacher.specification;
 
 import com.example.edutrackbackend.common.enums.Gender;
+import com.example.edutrackbackend.department.model.Department;
 import com.example.edutrackbackend.teacher.model.Teacher;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -30,13 +31,13 @@ public class TeacherSpecification {
     }
 
     // Filter Teacher by Department
-    public static Specification<Teacher> hasDepartment(String department) {
+    public static Specification<Teacher> hasDepartment(Long departmentId) {
 
-        return (root, query, cb ) -> {
+        return (root, query, cb) -> {
 
-            if (department == null) return null;
+            if (departmentId == null) return null;
 
-            return cb.equal(root.get("department"), department);
+            return cb.equal(root.get("department").get("departmentId"), departmentId);
         };
     }
 

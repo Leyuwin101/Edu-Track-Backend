@@ -1,6 +1,7 @@
 package com.example.edutrackbackend.teacher.dto;
 
 import com.example.edutrackbackend.common.enums.Gender;
+import com.example.edutrackbackend.department.dto.DepartmentDTO;
 import com.example.edutrackbackend.user.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,7 +35,7 @@ public class TeacherResponse {
 
     private String address;
 
-    private String department;
+    private DepartmentDTO department;
 
     private String specialization;
 

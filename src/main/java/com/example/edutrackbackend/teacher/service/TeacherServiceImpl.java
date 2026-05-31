@@ -1,8 +1,13 @@
 package com.example.edutrackbackend.teacher.service;
 
 import com.example.edutrackbackend.common.response.PaginatedRes;
+import com.example.edutrackbackend.department.dto.DepartmentResponse;
+import com.example.edutrackbackend.department.model.Department;
+import com.example.edutrackbackend.department.validation.DepartmentValidator;
+import com.example.edutrackbackend.teacher.dto.AssignDepartmentRequest;
 import com.example.edutrackbackend.teacher.dto.TeacherRequest;
 import com.example.edutrackbackend.teacher.dto.TeacherResponse;
+import com.example.edutrackbackend.teacher.exception.TeacherAlreadyAssignedException;
 import com.example.edutrackbackend.teacher.mapper.TeacherMapper;
 import com.example.edutrackbackend.teacher.model.Teacher;
 import com.example.edutrackbackend.teacher.repository.TeacherRepository;
@@ -30,6 +35,7 @@ public class TeacherServiceImpl implements TeacherService{
     private final TeacherMapper teacherMapper;
     private final TeacherValidator teacherValidator;
     private final UserValidator userValidator;
+    private final DepartmentValidator departmentValidator;
 
     /**
      * Create new teacher
@@ -170,7 +176,7 @@ public class TeacherServiceImpl implements TeacherService{
 
         // Specification for searching students
         Specification<Teacher> spec = TeacherSpecification.hasKeyword(filter.getKeyword())
-                .and(TeacherSpecification.hasDepartment(filter.getDepartment()))
+                .and(TeacherSpecification.hasDepartment(filter.getDepartmentId()))
                 .and(TeacherSpecification.hasGender(filter.getGender()))
                 .and(TeacherSpecification.hasSpecialization(filter.getSpecialization()));
 
@@ -191,6 +197,41 @@ public class TeacherServiceImpl implements TeacherService{
                 totalItems(teachers.getTotalElements()).
                 build();
 
+
+    }
+
+    /**
+     * Assign teacher to a department
+     *
+     * Process:
+     * - Check if the teacher and the department exist first
+     * - Set the department
+     * - Saved the updated entity to the database
+     *
+     * @param request Department to assign and the teacher to assign in the department
+     * @return teacher response
+     */
+    @Override
+    public TeacherResponse assignDepartment(AssignDepartmentRequest request) {
+
+        log.info("[TEACHER][ASSIGN] Start teacherId={}", request.getTeacherId());
+
+        Teacher teacher = teacherValidator.validateTeacherExists(request.getTeacherId());
+
+        Department department = departmentValidator.hasDepartmentExists(request.getDepartmentId());
+
+        // Validator to check if the teache is assigned to a department
+        if (teacher.getDepartment() != null) {
+            throw new TeacherAlreadyAssignedException("Teacher is already assigned to department: " + teacher.getDepartment().getDepartmentName());
+        }
+
+        teacher.setDepartment(department);
+
+        Teacher saved = teacherRepository.save(teacher);
+
+        log.info("[TEACHER][ASSIGN] Success teacherId={}", request.getTeacherId());
+
+        return teacherMapper.toDto(saved);
 
     }
 

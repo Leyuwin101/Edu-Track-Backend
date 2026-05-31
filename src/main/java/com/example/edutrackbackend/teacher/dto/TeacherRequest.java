@@ -1,6 +1,8 @@
 package com.example.edutrackbackend.teacher.dto;
 
 import com.example.edutrackbackend.common.enums.Gender;
+import com.example.edutrackbackend.department.dto.DepartmentDTO;
+import com.example.edutrackbackend.department.model.Department;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -40,11 +42,8 @@ public class TeacherRequest {
     @NotBlank(message = "Address is required")
     private String address;
 
-    @NotBlank(message = "Department is required")
-    private String department;
-
     @NotBlank(message = "Specialization is required")
-    private String required;
+    private String specialization;
 
     @Pattern(
             regexp = "^09\\d{9}$",

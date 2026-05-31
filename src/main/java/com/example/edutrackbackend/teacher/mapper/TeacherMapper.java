@@ -1,5 +1,7 @@
 package com.example.edutrackbackend.teacher.mapper;
 
+import com.example.edutrackbackend.department.mapper.DepartmentMapper;
+import com.example.edutrackbackend.teacher.dto.TeacherDTO;
 import com.example.edutrackbackend.teacher.dto.TeacherRequest;
 import com.example.edutrackbackend.teacher.dto.TeacherResponse;
 import com.example.edutrackbackend.teacher.model.Teacher;
@@ -8,8 +10,12 @@ import com.example.edutrackbackend.user.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
 
-@Mapper(componentModel = "spring", uses = UserMapper.class)
+@Mapper(componentModel = "spring", uses = {
+        UserMapper.class,
+        DepartmentMapper.class
+})
 public interface TeacherMapper {
 
     /**
@@ -23,7 +29,7 @@ public interface TeacherMapper {
      * Converts Teacher entity into TeacherResponse DTO.
      * Maps nested User entity into UserDTO using UserMapper#toUserDTO.
      */
-    @Mapping(target = "userDTO", source = "user", qualifiedByName = "userDTO")
+    @Mapping(target = "user", source = "user", qualifiedByName = "toUserDTO")
     TeacherResponse toDto(Teacher teacher);
 
     /**
@@ -32,7 +38,11 @@ public interface TeacherMapper {
      */
     @Mapping(target = "teacherId", ignore = true)
     @Mapping(target = "user", ignore = true)
+    @Mapping(target = "department", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     void updateEntity(@MappingTarget Teacher teacher, TeacherRequest request);
+
+    @Named("toTeacherDTO")
+    TeacherDTO toTeacherDto(Teacher teacher);
 }

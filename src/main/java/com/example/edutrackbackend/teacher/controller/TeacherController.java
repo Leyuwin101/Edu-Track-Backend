@@ -3,6 +3,7 @@ package com.example.edutrackbackend.teacher.controller;
 import com.example.edutrackbackend.common.response.ApiRes;
 import com.example.edutrackbackend.common.response.PaginatedRes;
 import com.example.edutrackbackend.common.response.ResponseFactory;
+import com.example.edutrackbackend.teacher.dto.AssignDepartmentRequest;
 import com.example.edutrackbackend.teacher.dto.TeacherRequest;
 import com.example.edutrackbackend.teacher.dto.TeacherResponse;
 import com.example.edutrackbackend.teacher.service.TeacherService;
@@ -176,5 +177,30 @@ public class TeacherController {
 
         return ResponseFactory.success("Searched Teachers Successfully", teachers);
     }
+
+    /**
+     * Assign teacher to department
+     *
+     * Accessibly by ADMIN and REGISTRAR only
+     *
+     * @param request assigning department data
+     * @return teacher response
+     */
+    @Operation(summary = "Assign teacher to department", description = "Accessibly by ADMIN and REGISTRAR ONLY")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Teacher department assigned successfully"),
+            @ApiResponse(responseCode = "404", description = "Teacher/Department not found"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403",description = "Access denied")
+    })
+    @PostMapping("/assign")
+    @PreAuthorize("hasAnyRole('ADMIN','REGISTRAR')")
+    public ResponseEntity<ApiRes<TeacherResponse>> assignDepartment(@Valid @RequestBody AssignDepartmentRequest request) {
+
+        TeacherResponse assign = teacherService.assignDepartment(request);
+
+        return ResponseFactory.success("Teacher assigned to department successfully", assign);
+    }
+
 
 }

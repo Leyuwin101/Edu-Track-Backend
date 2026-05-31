@@ -193,7 +193,7 @@ public class StudentController {
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403",description = "Access denied")
     })
-    @PostMapping("/assign/")
+    @PostMapping("/assign")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiRes<StudentResponse>> assignSection(@RequestBody AssignSectionRequest request) {
 
