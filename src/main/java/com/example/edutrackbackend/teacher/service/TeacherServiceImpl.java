@@ -220,7 +220,7 @@ public class TeacherServiceImpl implements TeacherService{
 
         Department department = departmentValidator.hasDepartmentExists(request.getDepartmentId());
 
-        // Validator to check if the teache is assigned to a department
+        // Validator to check if the teacher is assigned to a department
         if (teacher.getDepartment() != null) {
             throw new TeacherAlreadyAssignedException("Teacher is already assigned to department: " + teacher.getDepartment().getDepartmentName());
         }

@@ -1,6 +1,7 @@
 package com.example.edutrackbackend.student.dto;
 
 import com.example.edutrackbackend.common.enums.Gender;
+import com.example.edutrackbackend.section.dto.SectionDTO;
 import com.example.edutrackbackend.student.enums.YearLevel;
 import com.example.edutrackbackend.user.dto.UserDTO;
 import lombok.AllArgsConstructor;
@@ -35,7 +36,7 @@ public class StudentResponse {
 
     private YearLevel yearLevel;
 
-    private String section;
+    private SectionDTO section;
 
     private String contactNumber;
 

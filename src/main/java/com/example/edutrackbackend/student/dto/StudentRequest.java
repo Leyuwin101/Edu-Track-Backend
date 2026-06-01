@@ -40,7 +40,7 @@ public class StudentRequest {
     @NotNull(message = "Year Level is required")
     private YearLevel yearLevel;
 
-    private String section;
+    private Long sectionId;
 
     @Pattern(
             regexp = "^09\\d{9}$",

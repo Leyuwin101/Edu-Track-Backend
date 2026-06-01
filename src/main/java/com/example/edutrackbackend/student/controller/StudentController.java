@@ -197,7 +197,7 @@ public class StudentController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiRes<StudentResponse>> assignSection(@RequestBody AssignSectionRequest request) {
 
-        StudentResponse student = studentService.assignSection(request.getStudentId(), request.getSection());
+        StudentResponse student = studentService.assignSection(request);
 
         return ResponseFactory.success("Student section assigned successfully", student);
     }

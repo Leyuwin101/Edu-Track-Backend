@@ -1,6 +1,7 @@
 package com.example.edutrackbackend.student.model;
 
 import com.example.edutrackbackend.common.enums.Gender;
+import com.example.edutrackbackend.section.model.Section;
 import com.example.edutrackbackend.student.enums.StudentStatus;
 import com.example.edutrackbackend.student.enums.YearLevel;
 import com.example.edutrackbackend.user.model.User;
@@ -30,7 +31,7 @@ public class Student {
     private Long studentId;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
     @Column(name = "student_number", unique = true)
@@ -56,8 +57,9 @@ public class Student {
     @Column(name = "year_level", nullable = false)
     private YearLevel yearLevel;
 
-    @Column(name = "section")
-    private String section;
+    @OneToOne
+    @JoinColumn(name = "section_id", nullable = false, unique = true)
+    private Section section;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)

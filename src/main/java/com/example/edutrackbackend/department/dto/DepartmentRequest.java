@@ -14,10 +14,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DepartmentRequest {
 
-    @NotBlank
+    @NotBlank(message = "Department name is required")
     private String departmentName;
 
-    @NotNull
-    private TeacherDTO departmentHead;
+    private Long departmentHeadId;
 
 }

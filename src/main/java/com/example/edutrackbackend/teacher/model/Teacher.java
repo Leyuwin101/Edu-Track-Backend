@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@Entity
 @Table(
         name = "teachers",
         indexes = {
@@ -30,7 +30,7 @@ public class Teacher {
     private Long teacherId;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
     @Column(name = "employee_number", nullable = false, unique = true)
@@ -65,6 +65,8 @@ public class Teacher {
     @Column(name = "contact_number", nullable = false)
     private String contactNumber;
 
+    @PrePersist
+    public void prePersist() { this.createdAt = LocalDateTime.now(); }
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

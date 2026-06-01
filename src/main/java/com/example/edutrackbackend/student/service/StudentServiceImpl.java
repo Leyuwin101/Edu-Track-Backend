@@ -1,6 +1,9 @@
 package com.example.edutrackbackend.student.service;
 
 import com.example.edutrackbackend.common.response.PaginatedRes;
+import com.example.edutrackbackend.section.model.Section;
+import com.example.edutrackbackend.section.validation.SectionValidator;
+import com.example.edutrackbackend.student.dto.AssignSectionRequest;
 import com.example.edutrackbackend.student.dto.StudentRequest;
 import com.example.edutrackbackend.student.dto.StudentResponse;
 import com.example.edutrackbackend.student.enums.StudentStatus;
@@ -31,6 +34,7 @@ public class StudentServiceImpl implements StudentService{
     private final StudentMapper studentMapper;
     private final StudentValidator studentValidator;
     private final UserValidator userValidator;
+    private final SectionValidator sectionValidator;
 
     /**
      * Create student that links with user
@@ -214,16 +218,17 @@ public class StudentServiceImpl implements StudentService{
      * - Saved the assigned section of the student
      * - Return the student response
      *
-     * @param studentId student id to assign
-     * @param section section of the student
+     * @param request Section to assign and the student to assign in the section
      * @return updated student response with the section
      */
     @Override
-    public StudentResponse assignSection(Long studentId, String section) {
+    public StudentResponse assignSection(AssignSectionRequest request) {
 
-        log.info("[STUDENT][ASSIGN_SECTION] Start studentId={}", studentId);
+        log.info("[STUDENT][ASSIGN_SECTION] Start studentId={}", request.getStudentId());
 
-        Student student = studentValidator.validateStudentExists(studentId);
+        Student student = studentValidator.validateStudentExists(request.getStudentId());
+
+        Section section = sectionValidator.validateSectionExists(request.getSectionId());
 
         student.setSection(section);
 

@@ -40,7 +40,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         log.info("[DEPARTMENT][CREATE] Start departmentName={}", request.getDepartmentName());
 
-        Teacher teacher = teacherValidator.validateTeacherExists(request.getDepartmentHead().getTeacherId());
+        Teacher teacher = teacherValidator.validateTeacherExists(request.getDepartmentHeadId());
 
         Department department = departmentMapper.toEntity(request, teacher);
 
@@ -73,8 +73,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         departmentMapper.updateEntity(department, request);
 
-        if (request.getDepartmentHead() != null) {
-            Teacher teacher = teacherValidator.validateTeacherExists(request.getDepartmentHead().getTeacherId());
+        if (request.getDepartmentHeadId() != null) {
+            Teacher teacher = teacherValidator.validateTeacherExists(request.getDepartmentHeadId());
 
             department.setDepartmentHead(teacher);
         }

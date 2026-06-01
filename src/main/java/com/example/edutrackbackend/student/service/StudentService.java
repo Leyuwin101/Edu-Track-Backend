@@ -1,6 +1,7 @@
 package com.example.edutrackbackend.student.service;
 
 import com.example.edutrackbackend.common.response.PaginatedRes;
+import com.example.edutrackbackend.student.dto.AssignSectionRequest;
 import com.example.edutrackbackend.student.dto.StudentRequest;
 import com.example.edutrackbackend.student.dto.StudentResponse;
 import com.example.edutrackbackend.student.enums.StudentStatus;
@@ -23,7 +24,7 @@ public interface StudentService {
 
     PaginatedRes<StudentResponse> searchStudents(StudentFilter filter, Pageable pageable);
 
-    StudentResponse assignSection(Long studentId, String section);
+    StudentResponse assignSection(AssignSectionRequest request);
 
     StudentResponse updateStatus(Long studentId, StudentStatus status);
 

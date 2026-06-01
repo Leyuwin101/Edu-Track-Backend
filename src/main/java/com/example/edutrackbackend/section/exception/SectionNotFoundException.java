@@ -1,6 +1,7 @@
-package com.example.edutrackbackend.common.exception;
+package com.example.edutrackbackend.section.exception;
 
 import com.example.edutrackbackend.common.enums.ErrorCode;
+import com.example.edutrackbackend.common.exception.BaseException;
 import org.springframework.http.HttpStatus;
 
 public class SectionNotFoundException extends BaseException {
