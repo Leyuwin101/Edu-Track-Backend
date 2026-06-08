@@ -1,5 +1,6 @@
 package com.example.edutrackbackend.student.mapper;
 
+import com.example.edutrackbackend.student.dto.StudentDTO;
 import com.example.edutrackbackend.student.dto.StudentRequest;
 import com.example.edutrackbackend.student.dto.StudentResponse;
 import com.example.edutrackbackend.student.model.Student;
@@ -8,6 +9,7 @@ import com.example.edutrackbackend.user.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring", uses = UserMapper.class)
 public interface StudentMapper {
@@ -35,5 +37,8 @@ public interface StudentMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     void updateEntity(@MappingTarget Student student, StudentRequest request);
+
+    @Named("toStudentDTO")
+    StudentDTO toStudentDto(Student student);
 
 }

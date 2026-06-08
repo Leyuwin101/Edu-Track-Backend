@@ -1,5 +1,6 @@
 package com.example.edutrackbackend.section.mapper;
 
+import com.example.edutrackbackend.course.mapper.CourseMapper;
 import com.example.edutrackbackend.course.model.Course;
 import com.example.edutrackbackend.section.dto.SectionRequest;
 import com.example.edutrackbackend.section.dto.SectionResponse;
@@ -8,7 +9,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring", uses = Course.class)
+@Mapper(componentModel = "spring", uses = CourseMapper.class)
 public interface SectionMapper {
 
     /**
@@ -22,7 +23,7 @@ public interface SectionMapper {
      * Converts Section entity into SectionResponse DTO.
      * Maps nested Course entity into CourseDTO using CourseMapper#toCourseDTO.
      */
-    @Mapping(target = "courseDTO", source = "course", qualifiedByName = "toCourseDTO")
+    @Mapping(target = "course", source = "course", qualifiedByName = "toCourseDTO")
     SectionResponse toDto(Section section);
 
     /**
